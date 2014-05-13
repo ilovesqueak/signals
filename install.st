@@ -1,4 +1,4 @@
-| baseDir log source packages |
+| baseDir log source packages gitPath |
 
 log := [:msg | | str |
     str := '-----> ', msg.
@@ -16,28 +16,32 @@ Installer ss
     project: 'OSProcess';
     install: 'OSProcess-dtl.73'.
 
-"How do we find the actual repository? It's _by definition_ BUILD_DIR."
-source := (Smalltalk at: #MCFileTreeRepository) path: ((Smalltalk at: #UnixProcess) env at: #'BUILD_DIR').
-packages := source allPackageNames.
+(Smalltalk at: #Gofer) new
+              url: 'http://seaside.gemtalksystems.com/ss/metacello';
+                            package: 'ConfigurationOfMetacello';
+                                          load.
+((Smalltalk at: #ConfigurationOfMetacello) project
+            version: #'previewBootstrap') load.
 
-"Load in the latest versions (for filetree there ought to be only one version
- per package)."
-packages do: [:pkg |
-    (source highestNumberedVersionForPackageNamed: pkg) load].
+(Smalltalk at: #Metacello) new
+        configuration: 'MetacelloPreview';
+                version: #'stable';
+                        repository: 'github://dalehenrich/metacello-work:configuration';
+                                get.
 
-"Load in any configurations found. There OUGHT to be only one...?"
-((packages select: [:pkg |
-    pkg startsWith: 'ConfigurationOf'])
-        collect: #asSymbol)
-            do: [:conf |
-                log value: 'Installing ', conf.
-                (Smalltalk at: conf) loadStable].
+(Smalltalk at: #Metacello) new
+        configuration: 'MetacelloPreview';
+                version: #'stable';
+                        repository: 'github://dalehenrich/metacello-work:configuration';
+                                load.
+gitPath := FileDirectory default fullName.
 
-baseDir := FileDirectory on: ((Smalltalk at: #UnixProcess) env at: #'BUILD_DIR').
-(baseDir fileOrDirectoryExists: 'install.st')
-    ifTrue: [ |loader|
-        loader := CodeLoader new.
-	baseDir fileNamed: 'install.st' do: [:f |
-            loader installSourceFile: f]].
+(Smalltalk at: #Metacello) new
+  baseline: 'Signals';
+  repository: 'filetree://', gitPath, '/signals/repository';
+  get.
 
-WorldState addDeferredUIMessage: [ SmalltalkImage current snapshot: false andQuit: true ].
+(Smalltalk at: #Metacello) new
+  baseline: 'Signals';
+  repository: 'filetree://', gitPath, '/signals/repository';
+  load.
