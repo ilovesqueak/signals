@@ -1,4 +1,27 @@
-use builderCI
-deploy remote Docker Container
-change screen resoltion
+* Edit code triggers github fork within squeak and commit
+  - this code should be a github repo
+  - for SSL go get help
+* Save
+  - via Monticello
+  - via Github Button/Badge (top right corner) (like for me, just for saving)
+     .. how determine which github project to save?
+* Distinguish between fork/commit(save)
 
+
+* Don't use all in One image, but Linux image instead
+* WebVNC.start, alternatively local tighVNC
+* Deploy remote Docker Container
+* Change screen resoltion/use squeaks vnc/? ..put in install.st
+
+* Use builderCI alike configuration
+
+* Provision of squeak image?
+* View anonymously
+* Distinguish try and code (with provisioned github credientials)
+
+* What were your Problems?
+
+* Think about correct "better" github intergration, e.g. w/o filetree, because
+I'm a normal Squeak user who wants to push his/her projects on github
+
+* Pull request
