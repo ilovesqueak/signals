@@ -21,6 +21,12 @@ initialize
     hasRequested := false.
     super initialize.
 ! !
+!MCVersionInfo methodsFor: 'accessing'!
+date
+    ^ date.! !
+!MCVersionInfo methodsFor: 'accessing'!
+time
+    ^ time.! !
 | baseDir log source packages |
 
 log := [:msg | | str |
