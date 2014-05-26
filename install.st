@@ -1,4 +1,27 @@
-| baseDir log source packages gitPath |
+SimpleButtonMorph subclass: #PushButton
+                     instanceVariableNames: 'hasRequested'
+                     classVariableNames: ''
+                     poolDictionaries: ''
+                     category: 'Morphic-Git'!
+!PushButton methodsFor: 'button'!
+doButtonAction
+    hasRequested ifFalse: [
+        | user pass store |
+        OSProcess waitForCommand: 'git config credential.helper "store --file=/tmp/credentials"'.
+        user := FillInTheBlank request: 'Github username?'.
+        pass := FillInTheBlank requestPassword: 'Github password?'.
+        store := FileStream fileNamed: '/tmp/credentials'.
+        store nextPutAll: 'https://' , user , ':' , pass , '@github.com'.
+        hasRequested := True.
+    ].
+    OSProcess waitForCommand: 'git push'.
+! !
+!PushButton methodsFor: 'initialization'!
+initialize 
+    hasRequested := false.
+    super initialize.
+! !
+| baseDir log source packages |
 
 log := [:msg | | str |
     str := '-----> ', msg.
@@ -34,14 +57,14 @@ Installer ss
                 version: #'stable';
                         repository: 'github://dalehenrich/metacello-work:configuration';
                                 load.
-gitPath := FileDirectory default fullName.
 
 (Smalltalk at: #Metacello) new
   baseline: 'Signals';
-  repository: 'filetree://', gitPath, '/signals/repository';
+  repository: 'filetree:///repository';
   get.
 
 (Smalltalk at: #Metacello) new
   baseline: 'Signals';
-  repository: 'filetree://', gitPath, '/signals/repository';
+  repository: 'filetree:///repository';
   load.
+(PushButton new initializeWithLabel: 'Publish on Github.') openInWorld.

@@ -23,8 +23,6 @@ ENV VERSION 4.5
 ADD http://ftp.squeak.org/$VERSION/Squeak-$VERSION-All-in-One.zip Squeak.zip
 RUN unzip Squeak.zip
 
-RUN mkdir -p /Squeak-$VERSION-All-in-One.app/Contents/Resources/signals
-ADD repository /Squeak-$VERSION-All-in-One.app/Contents/Resources/signals/repository
-ADD install.st /install.st
+ADD . /
 
 CMD Xvfb -screen 0 1024x768x16 -ac & sleep 5 ; x11vnc -forever -usepw -display :0 & DISPLAY=:0 ./Squeak-$VERSION-All-in-One.app/Contents/Linux-i686/bin/squeak  -vm-sound-null ./Squeak-$VERSION-All-in-One.app/Contents/Resources/Squeak*.image /install.st
