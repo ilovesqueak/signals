@@ -1,9 +1,9 @@
-SimpleButtonMorph subclass: #PushButton
+SimpleButtonMorph subclass: #GHPushButton
                      instanceVariableNames: 'hasRequested'
                      classVariableNames: ''
                      poolDictionaries: ''
-                     category: 'Morphic-Git'!
-!PushButton methodsFor: 'button'!
+                     category: 'Github'!
+!GHPushButton methodsFor: 'button'!
 doButtonAction
     hasRequested ifFalse: [
         | user pass store |
@@ -16,7 +16,7 @@ doButtonAction
     ].
     OSProcess waitForCommand: 'git push'.
 ! !
-!PushButton methodsFor: 'initialization'!
+!GHPushButton methodsFor: 'initialization'!
 initialize 
     hasRequested := false.
     super initialize.
@@ -67,4 +67,4 @@ Installer ss
   baseline: 'Signals';
   repository: 'filetree:///repository';
   load.
-(PushButton new initializeWithLabel: 'Publish on Github.') openInWorld.
+(GHPushButton new initializeWithLabel: 'Publish on Github.') openInWorld.
