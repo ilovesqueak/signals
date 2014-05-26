@@ -38,10 +38,10 @@ gitPath := FileDirectory default fullName.
 
 (Smalltalk at: #Metacello) new
   baseline: 'Signals';
-  repository: 'github://hubx/signals:master/repository';
+  repository: 'filetree://', gitPath, '/signals/repository';
   get.
 
 (Smalltalk at: #Metacello) new
   baseline: 'Signals';
-  repository: 'github://hubx/signals:master/repository';
+  repository: 'filetree://', gitPath, '/signals/repository';
   load.
