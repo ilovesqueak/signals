@@ -17,6 +17,9 @@ RUN apt install -y libglu1-mesa:i386 libxrender1:i386 libfreetype6:i386
 RUN mkdir /.vnc
 RUN x11vnc -storepasswd 1234 ~/.vnc/passwd
 
+RUN git config --global user.name TestUsername
+RUN git config --global user.email TestUser@example.com
+
 ENV VERSION 4.5
 ADD http://ftp.squeak.org/$VERSION/Squeak-$VERSION-All-in-One.zip Squeak.zip
 RUN unzip Squeak.zip
@@ -26,8 +29,5 @@ ADD images/ images/
 
 ADD . /
 
-RUN git config --global user.name TestUsername
-RUN git config --global user.email TestUser@example.com
-
 EXPOSE 5900
-CMD Xvfb -screen 0 1024x768x16 -ac & sleep 5 ; x11vnc -forever -usepw -display :0 & ./wait_monticello_commit.sh & DISPLAY=:0 ./Squeak-$VERSION-All-in-One.app/Contents/Linux-i686/bin/squeak  -vm-sound-null ./images/Squeak*.image /install.st
+CMD Xvfb -screen 0 1024x768x16 -ac & sleep 5 ; x11vnc -forever -usepw -display :0 & ./wait_monticello_commit.sh & DISPLAY=:0 ./Squeak-$VERSION-All-in-One.app/Contents/Linux-i686/bin/squeak  -vm-sound-null ./Squeak-$VERSION-All-in-One.app/Contents/Resources/Squeak*.image /install.st
