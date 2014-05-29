@@ -13,6 +13,7 @@ doButtonAction
         store := FileStream fileNamed: '/tmp/credentials'.
         store nextPutAll: 'https://' , user , ':' , pass , '@github.com'; lf.
         hasRequested := true.
+        OSProcess waitForCommand: 'git config --global user.name ', user
     ].
     OSProcess waitForCommand: 'git push'.
 ! !
