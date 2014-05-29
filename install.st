@@ -21,12 +21,6 @@ initialize
     hasRequested := false.
     super initialize.
 ! !
-!MCVersionInfo methodsFor: 'accessing'!
-date
-    ^ date.! !
-!MCVersionInfo methodsFor: 'accessing'!
-time
-    ^ time.! !
 | baseDir log source packages |
 
 log := [:msg | | str |
@@ -74,3 +68,9 @@ Installer ss
   repository: 'filetree:///repository';
   load.
 (GHPushButton new initializeWithLabel: 'Publish on Github.') openInWorld.
+!MCVersionInfo methodsFor: 'accessing'!
+date
+    ^ date.! !
+!MCVersionInfo methodsFor: 'accessing'!
+time
+    ^ time.! !
