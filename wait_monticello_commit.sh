@@ -8,7 +8,7 @@ file=$(git diff --name-only | grep /version$)
 # quotes in Monticello commit messages are represented as double quotes
 message=`sed "s/^(name '[^']*' message '\(\([^']\|''\)*\)'.*/\1/" "$file" \
     | sed "s/''/'/g"`
-git add --all
+git add --all repository/
 git commit --message "$message"
 
 done
