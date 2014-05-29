@@ -27,7 +27,7 @@ log := [:msg | | str |
     str := '-----> ', msg.
     FileStream stdout nextPutAll: str; nextPut: Character lf; flush.
     Transcript cr; show: str].
-
+"
 log value: 'Installing filetree'.
 Installer ss3
     project: 'FileTree';
@@ -59,6 +59,7 @@ log value: 'Installing Metacello-work'.
                 version: #'stable';
                         repository: 'github://dalehenrich/metacello-work:configuration';
                                 load.
+"
 
 log value: 'Installing Signals'.
 (Smalltalk at: #Metacello) new
