@@ -28,7 +28,7 @@ log := [:msg | | str |
     FileStream stdout nextPutAll: str; nextPut: Character lf; flush.
     Transcript cr; show: str].
 
-log value: 'Installing filetree'.
+log value: 'Installing FileTree'.
 Installer ss3
     project: 'FileTree';
     install: 'ConfigurationOfFileTree'.
@@ -36,41 +36,16 @@ Installer ss3
 
 log value: 'Installing OSProcess'.
 Installer ss
-    project: 'OSProcess';
-    install: 'OSProcess-dtl.73'.
+    project: 'MetacelloRepository';
+    install: 'ConfigurationOfOSProcess'.
+(Smalltalk at: #ConfigurationOfOSProcess) project stableVersion load.
 
-log value: 'Installing Metacello'.
-(Smalltalk at: #Gofer) new
-              url: 'http://seaside.gemtalksystems.com/ss/metacello';
-                            package: 'ConfigurationOfMetacello';
-                                          load.
-((Smalltalk at: #ConfigurationOfMetacello) project
-            version: #'previewBootstrap') load.
-
-log value: 'Installing Metacello-work'.
-(Smalltalk at: #Metacello) new
-        configuration: 'MetacelloPreview';
-                version: #'stable';
-                        repository: 'github://dalehenrich/metacello-work:configuration';
-                                get.
-
-(Smalltalk at: #Metacello) new
-        configuration: 'MetacelloPreview';
-                version: #'stable';
-                        repository: 'github://dalehenrich/metacello-work:configuration';
-                                load.
-
-log value: 'Installing Signals'.
-(Smalltalk at: #Metacello) new
-  baseline: 'Signals';
-  repository: 'filetree:///repository';
-  get.
-
-(Smalltalk at: #Metacello) new
-  baseline: 'Signals';
-  repository: 'filetree:///repository';
-  load.
+Installer monticello
+  mc: (MCFileTreeRepository directory:
+    (FileDirectory uri: '/repository'));
+  install: 'Signals'.
 log value: 'Done'.
+
 (GHPushButton new initializeWithLabel: 'Publish on Github.') openInWorld.!
 !MCVersionInfo methodsFor: 'accessing'!
 date
