@@ -7,7 +7,7 @@
 		"test01ConnectDisconnect" : "mt 6/2/2010 22:00",
 		"test02ConnectError" : "mt 6/2/2010 22:00",
 		"test03Signaling" : "mt 6/6/2010 09:06:01.776",
-		"test04Patterns" : "mt 6/6/2010 09:06:06.376",
+		"test04Patterns" : "xx 5/29/2014 10:46",
 		"test05PatternsReorder" : "mt 6/6/2010 09:06:13.531",
 		"test06DoubleConnection" : "mt 6/6/2010 09:06:22.928",
 		"test07PatternError" : "mt 6/4/2010 13:39",
