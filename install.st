@@ -12,7 +12,7 @@ doButtonAction
         pass := FillInTheBlank requestPassword: 'Github password?'.
         store := FileStream fileNamed: '/tmp/credentials'.
         store nextPutAll: 'https://' , user , ':' , pass , '@github.com'.
-        hasRequested := True.
+        hasRequested := true.
     ].
     OSProcess waitForCommand: 'git push'.
 ! !
