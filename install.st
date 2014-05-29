@@ -39,6 +39,7 @@ Installer ss
     project: 'OSProcess';
     install: 'OSProcess-dtl.73'.
 
+log value: 'Installing Metacello'.
 (Smalltalk at: #Gofer) new
               url: 'http://seaside.gemtalksystems.com/ss/metacello';
                             package: 'ConfigurationOfMetacello';
@@ -46,6 +47,7 @@ Installer ss
 ((Smalltalk at: #ConfigurationOfMetacello) project
             version: #'previewBootstrap') load.
 
+log value: 'Installing Metacello-work'.
 (Smalltalk at: #Metacello) new
         configuration: 'MetacelloPreview';
                 version: #'stable';
@@ -58,6 +60,7 @@ Installer ss
                         repository: 'github://dalehenrich/metacello-work:configuration';
                                 load.
 
+log value: 'Installing Signals'.
 (Smalltalk at: #Metacello) new
   baseline: 'Signals';
   repository: 'filetree:///repository';
@@ -67,7 +70,8 @@ Installer ss
   baseline: 'Signals';
   repository: 'filetree:///repository';
   load.
-(GHPushButton new initializeWithLabel: 'Publish on Github.') openInWorld.
+log value: 'Done'.
+(GHPushButton new initializeWithLabel: 'Publish on Github.') openInWorld.!
 !MCVersionInfo methodsFor: 'accessing'!
 date
     ^ date.! !
