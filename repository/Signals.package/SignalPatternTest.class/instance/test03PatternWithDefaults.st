@@ -1,7 +1,7 @@
 tests
 test03PatternWithDefaults
 
-	pattern mapping: #(1 2 =foobar).
+	pattern mapping: #(1 3 =foobar).
 	
 	self
 		assert: 3 equals: pattern size;
