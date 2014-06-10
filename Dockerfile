@@ -1,4 +1,3 @@
 FROM lehmannro/squeak
-ADD run.st /
-ADD repository/ /repository
+ADD . /checkout
 CMD /run.sh

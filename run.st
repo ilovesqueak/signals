@@ -1,8 +1,4 @@
-Metacello new
-  baseline: 'Signals';
-  repository: 'filetree:///repository';
-  get.
-Metacello new
-  baseline: 'Signals';
-  repository: 'filetree:///repository';
-  load.
+Gofer new
+    repository: (MCGithubRepository path: '/checkout' from: 'https://github.com/hubx/signals.git');
+    package: 'Signals';
+    load.
