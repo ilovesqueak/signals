@@ -1,7 +1,7 @@
 tests
 test01ConnectDisconnect
 
-	self assert: producer signalConnections isEmpty.
+	self assert: producer signalConnections isEmpty not.
 	consumer connect: producer signal: #valueChanged: toSelector: #value:.
 	self assert: 1 equals: producer signalConnections size.
 	
